@@ -1,0 +1,19 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "prueba01011996-dev-patch-1" ]
+  pull_request:
+    branches: [ "prueba01011996-dev-patch-1" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+I made a custom profile and started building a gentoo system with systemd instead of sysvinit in a chroot for testing.<br><br>I&#39;ve noticed two minor problems with the ebuild - it is missing the dependency for dev-libs/dbus-glib and portage won&#39;t install it if sysvinit is installed because of file collisions. The dependencies should probably reflect this.<br>
